@@ -138,3 +138,20 @@ class DashboardStats(BaseModel):
     total_wrong: int
     accuracy_percentage: float
     by_discipline: list[dict]  # [{"discipline": "Matemática", "correct": 5, "total": 10}]
+
+
+# ─── LISTAGEM DE QUESTÕES ───────────────────────────────────────
+
+class QuestionListResponse(BaseModel):
+    """
+    Resposta paginada da listagem de questões.
+    O frontend usa 'total' e 'pages' para montar a navegação de páginas.
+    """
+    items: list[QuestionResponse]
+    total: int    # total de questões com esses filtros
+    page: int     # página atual
+    size: int     # itens por página
+    pages: int    # total de páginas
+
+    class Config:
+        from_attributes = True
